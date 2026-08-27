@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>국토 대탈출: 사라진 우리나라 좌표</title>
+<style>
+:root{--c:#fff8e8;--w:#fffdf7;--y:#ffd85c;--yd:#e8b72f;--b:#5b442b;--g:#78a85e;--r:#d97864;--bl:#72aec4}
+*{box-sizing:border-box}body{margin:0;background:var(--c);color:var(--b);font-family:"Noto Sans KR","Malgun Gothic",sans-serif}
+.app{width:min(1000px,calc(100% - 24px));margin:auto;padding:18px 0 30px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:900}.score{background:#fff0b5;border:1px solid #e8ce70;border-radius:99px;padding:7px 13px}
+.bar{display:flex;gap:5px;margin-bottom:12px}.dot{height:6px;flex:1;background:#e6dcc8;border-radius:9px}.dot.on{background:var(--yd)}
+.scene{display:none;min-height:570px;padding:35px clamp(18px,6vw,60px);background:var(--w);border:2px solid #eddbab;border-radius:28px;box-shadow:0 10px 25px #5b442b18;text-align:center;flex-direction:column;justify-content:center;align-items:center}.scene.active{display:flex}
+.tag{background:var(--y);border-radius:99px;padding:6px 13px;font-size:13px;font-weight:900;margin-bottom:15px}.q{font-size:clamp(27px,5vw,47px);line-height:1.25;letter-spacing:-2px;margin:0 0 22px;font-weight:900}.sub{font-size:18px;line-height:1.6;color:#806c52}.detective{font-size:65px}.bubble{max-width:700px;background:#fff1b9;border:2px solid #efd77e;border-radius:22px;padding:18px 22px;margin:3px auto 22px;font-size:19px;font-weight:800}
+.choices{width:min(760px,100%);display:grid;grid-template-columns:1fr 1fr;gap:13px}.choice{min-height:70px;border:3px solid #ead9b0;border-radius:18px;background:#fffdf8;color:var(--b);padding:13px;font-size:17px;font-weight:900;cursor:pointer}.choice:hover:not(:disabled){background:#fff7d9;border-color:var(--yd)}.choice.correct{background:#edf6e8;border-color:var(--g);color:#477338}.choice.wrong{background:#fff0eb;border-color:var(--r);color:#954f40}.choice:disabled{cursor:default}
+.fact{margin:8px 0 18px;padding:20px;background:#fff5c8;border:2px dashed #e5bf48;border-radius:20px}.fact span{display:inline-block;background:#f7efdc;border-radius:12px;padding:8px 11px;margin:4px;font-weight:800}.feedback{min-height:28px;margin:8px 0;font-weight:900}.good{color:#4d8738}.bad{color:#a75242}.hint{font-size:13px;color:#8b765c;margin-top:8px}
+.nav{display:flex;justify-content:space-between;margin-top:12px;gap:10px}.nav button,.search button{border:0;border-radius:15px;padding:13px 21px;background:#765a39;color:white;font-weight:900;cursor:pointer}.nav .next{background:var(--yd);color:#4d3812}.nav button:disabled{background:#d8d0c3;color:#888075;cursor:not-allowed}
+#evidence{display:none;margin-top:14px;padding:28px 18px;background:var(--w);border:2px solid #d4e6e9;border-radius:28px;box-shadow:0 10px 25px #5b442b18;text-align:center}#evidence.show{display:block}#evidence h2{font-size:30px;margin:4px 0 8px}.search{display:flex;max-width:740px;margin:20px auto 15px;gap:9px}.search input{flex:1;min-width:0;border:3px solid #e2d4b7;border-radius:15px;padding:14px;font-weight:700}.search button{background:var(--bl)}#result{max-width:740px;min-height:130px;margin:auto;padding:20px;border-radius:20px;background:#eef8fb;border:2px solid #cfe5ea;text-align:left;line-height:1.7}.empty{text-align:center;color:#77898d;font-weight:700}.source{border-top:1px solid #c8dfe4;margin-top:14px;padding-top:12px;font-size:14px}.source a{color:#34788b}.no{text-align:center;color:#985545;font-weight:900}
+@media(max-width:600px){.scene{min-height:540px;padding:25px 14px}.choices{grid-template-columns:1fr}.search{flex-direction:column}.search button{width:100%}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><div>🕵️ 국토 대탈출</div><div class="score" id="score">탐정 점수 0점</div></header>
+<div class="bar"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+
+<section class="scene active">
+<div class="detective">🕵️</div><div class="tag">사건 파일 01</div>
+<h1 class="q">긴급 메시지가 도착했다!</h1>
+<div class="bubble">🚨 “탐정님! 사라진 우리나라의 좌표를 찾아 주세요!”</div>
+<p class="sub">지금부터 여러분은 <b>국토 대탈출 탐정단</b>입니다.<br>첫 번째 단서를 찾아 사건을 해결해 봅시다.</p>
+</section>
+
+<section class="scene">
+<div class="tag">첫 번째 단서</div>
+<h1 class="q">“한 나라의 땅이며<br>사람들이 살아가는 삶의 터전”은?</h1>
+<div class="bubble">🔐 이 설명이 가리키는 단어를 찾아라!</div>
+<div class="choices" data-a="국토" data-n="2">
+<button class="choice">영토</button><button class="choice">국토</button><button class="choice">대륙</button><button class="choice">바다</button>
+</div><div class="feedback" id="f2"></div>
+</section>
+
+<section class="scene">
+<div class="tag">두 번째 단서</div>
+<h1 class="q">우리나라의 위치를 찾는 데<br>무엇을 사용할까?</h1>
+<p class="sub">두 가지 도구를 모두 골라 주세요.</p>
+<div class="choices" data-a="지구본,세계지도" data-n="3">
+<button class="choice">🌐 지구본</button><button class="choice">🗺️ 세계지도</button><button class="choice">📚 교과서만</button><button class="choice">🧭 나침반만</button>
+</div><div class="feedback" id="f3"></div><div class="hint">힌트: 지구 전체에서 우리나라의 위치를 살펴볼 수 있는 도구예요.</div>
+</section>
+
+<section class="scene">
+<div class="tag">세 번째 단서</div>
+<h1 class="q">북쪽과 남쪽의 위치를<br>나타내는 것은?</h1>
+<div class="fact"><span>가로선</span><span>적도 = 0도</span><span>북위 / 남위</span></div>
+<div class="choices" data-a="위도" data-n="4">
+<button class="choice">위도</button><button class="choice">경도</button><button class="choice">축척</button><button class="choice">방위</button>
+</div><div class="feedback" id="f4"></div>
+</section>
+
+<section class="scene">
+<div class="tag">네 번째 단서</div>
+<h1 class="q">동쪽과 서쪽의 위치를<br>나타내는 것은?</h1>
+<div class="fact"><span>세로선</span><span>본초 자오선 = 0도</span><span>동경 / 서경</span></div>
+<div class="choices" data-a="경도" data-n="5">
+<button class="choice">위도</button><button class="choice">경도</button><button class="choice">적도</button><button class="choice">축척</button>
+</div><div class="feedback" id="f5"></div>
+</section>
+
+<section class="scene">
+<div class="tag">결정적 단서</div>
+<h1 class="q">우리나라의 위치를<br>나타내는 범위는?</h1>
+<div class="bubble">🔎 탐정 수첩에 숫자가 나타났다!</div>
+<div class="choices" data-a="북위 33~43도, 동경 124~132도" data-n="6">
+<button class="choice">북위 20~30도, 동경 100~110도</button>
+<button class="choice">북위 33~43도, 동경 124~132도</button>
+<button class="choice">남위 33~43도, 서경 124~132도</button>
+<button class="choice">북위 43~53도, 동경 132~142도</button>
+</div><div class="feedback" id="f6"></div>
+</section>
+
+<section class="scene">
+<div class="tag">최종 사건 해결</div><div class="detective">🔐</div>
+<h1 class="q">사라진 우리나라의 좌표를<br>찾았다!</h1>
+<div class="bubble">🎉 사건 해결!<br>우리나라는 <b>북위 33~43도, 동경 124~132도</b>에 위치합니다.</div>
+<p class="sub">위도와 경도를 이용하면 지구 위에서 우리나라의 위치를 나타낼 수 있습니다.</p>
+</section>
+
+<section id="evidence">
+<div class="tag">4차시 추가 기능</div><h2>🔎 근거 확인</h2>
+<p>이 수업에 등록된 6개 근거 카드만 검색합니다.</p>
+<form class="search" id="form"><input id="input" placeholder="예: 국토란? / 위도란? / 경도란? / 우리나라 좌표"><button>근거 찾기</button></form>
+<div id="result"><div class="empty">궁금한 내용을 입력해 주세요.</div></div>
+</section>
+
+<nav class="nav"><button id="prev">← 이전</button><button class="next" id="next">다음 →</button></nav>
+</main>
+
+<script>
+const facts=[
+{keywords:["국토","나라","땅","삶","터전"],answer:"국토는 한 나라의 땅이며 사람들이 살아가는 삶의 터전입니다.",source:"[1차시] 우리 국토의 위치를 알아봅시다(1).pptx",url:""},
+{keywords:["지구본","지구","위치","찾기","도구"],answer:"지구본은 지구의 모습을 둥근 모양으로 나타낸 것으로, 세계 여러 나라의 위치를 살펴볼 수 있습니다.",source:"[1차시] 우리 국토의 위치를 알아봅시다(1).pptx",url:""},
+{keywords:["세계지도","세계","지도","위치","찾기","도구"],answer:"세계지도는 세계 여러 나라와 지역의 위치를 한눈에 살펴볼 수 있도록 나타낸 지도입니다.",source:"[1차시] 우리 국토의 위치를 알아봅시다(1).pptx",url:""},
+{keywords:["위도","가로선","적도","북위","남위","남북"],answer:"위도는 적도를 기준으로 북쪽과 남쪽의 위치를 나타냅니다. 적도는 0도이며, 북위와 남위로 나타냅니다.",source:"[1차시] 우리 국토의 위치를 알아봅시다(1).pptx",url:""},
+{keywords:["경도","세로선","본초","자오선","동경","서경","동서"],answer:"경도는 본초 자오선을 기준으로 동쪽과 서쪽의 위치를 나타냅니다. 본초 자오선은 0도이며, 동경과 서경으로 나타냅니다.",source:"[1차시] 우리 국토의 위치를 알아봅시다(1).pptx",url:""},
+{keywords:["우리나라","한국","좌표","위치","북위","동경","33","43","124","132"],answer:"우리나라의 위치는 북위 33~43도, 동경 124~132도입니다.",source:"국토교통부 어린이 공식 페이지",url:"https://www.molit.go.kr/kids/USR/WPGE0201/m_36062/DTL.jsp"}
+];
+
+const NO="이 수업의 근거 자료에서는 확인할 수 없습니다.";
+const scenes=[...document.querySelectorAll(".scene")],dots=[...document.querySelectorAll(".dot")];
+const prev=document.querySelector("#prev"),next=document.querySelector("#next"),scoreEl=document.querySelector("#score"),ev=document.querySelector("#evidence");
+let cur=0,score=0,solved=Array(8).fill(false),unlocked=Array(8).fill(false);
+
+function norm(s){
+return s.toLowerCase().replace(/[?？!！,.。,:;；"'“”‘’()[\]{}<>]/g," ").replace(/\s+/g," ").trim();
+}
+function update(){
+scenes.forEach((s,i)=>s.classList.toggle("active",i===cur));
+dots.forEach((d,i)=>d.classList.toggle("on",i<=cur));
+prev.disabled=cur===0;
+next.disabled=cur>0&&cur<6&&!unlocked[cur+1];
+next.textContent=cur===6?"근거 확인 →":"다음 →";
+scoreEl.textContent="탐정 점수 "+score+"점";
+ev.classList.toggle("show",cur===6);
+}
+
+document.querySelectorAll(".choices").forEach(area=>{
+const n=+area.dataset.n,answer=area.dataset.a,answers=answer.split(","),bs=[...area.querySelectorAll(".choice")];
+
+bs.forEach(btn=>btn.onclick=()=>{
+if(unlocked[n])return;
+
+if(n===3){
+const text=norm(btn.textContent);
+const hit=answers.find(x=>text.includes(norm(x)));
+
+if(hit){
+btn.classList.add("correct");
+btn.disabled=true;
+const got=bs.filter(x=>x.classList.contains("correct"))
+.map(x=>answers.find(k=>norm(x.textContent).includes(norm(k))))
+.filter(Boolean);
+
+if(answers.every(x=>got.includes(x))){
+unlocked[n]=true;
+if(!solved[n]){score+=10;solved[n]=true}
+document.querySelector("#f3").textContent="정답! 지구본과 세계지도를 모두 찾았습니다.";
+document.querySelector("#f3").className="feedback good";
+update();
+}else{
+document.querySelector("#f3").textContent="좋아요! 하나를 더 찾아야 해요.";
+document.querySelector("#f3").className="feedback good";
+}
+}else{
+btn.classList.add("wrong");
+btn.disabled=true;
+document.querySelector("#f3").textContent="오답이에요. 다른 단서를 찾아보세요.";
+document.querySelector("#f3").className="feedback bad";
+}
+return;
+}
+
+const selected=norm(btn.textContent);
+if(selected===norm(answer)){
+btn.classList.add("correct");
+bs.forEach(x=>x.disabled=true);
+unlocked[n]=true;
+if(!solved[n]){score+=10;solved[n]=true}
+
+const msg={
+2:"정답! 국토는 한 나라의 땅이며 사람들이 살아가는 삶의 터전입니다.",
+4:"정답! 위도는 적도를 기준으로 북쪽과 남쪽의 위치를 나타냅니다.",
+5:"정답! 경도는 본초 자오선을 기준으로 동쪽과 서쪽의 위치를 나타냅니다.",
+6:"정답! 북위 33~43도, 동경 124~132도입니다."
+};
+document.querySelector("#f"+n).textContent=msg[n];
+document.querySelector("#f"+n).className="feedback good";
+update();
+}else{
+btn.classList.add("wrong");
+btn.disabled=true;
+document.querySelector("#f"+n).textContent="오답이에요. 단서를 다시 생각해 보세요.";
+document.querySelector("#f"+n).className="feedback bad";
+update();
+}
+});
+});
+
+next.onclick=()=>{
+if(cur===6){
+ev.classList.add("show");
+ev.scrollIntoView({behavior:"smooth"});
+return;
+}
+if(cur===0||unlocked[cur+1]){cur++;update()}
+};
+prev.onclick=()=>{
+if(cur>0){cur--;update()}
+};
+
+document.querySelector("#form").onsubmit=e=>{
+e.preventDefault();
+const q=norm(document.querySelector("#input").value);
+let best=null,max=0;
+
+facts.forEach(f=>{
+const n=f.keywords.reduce((s,k)=>s+(q.includes(norm(k))?1:0),0);
+if(n>max){max=n;best=f}
+});
+
+const r=document.querySelector("#result");
+if(!best){
+r.innerHTML='<div class="no">'+NO+"</div>";
+return;
+}
+r.innerHTML="<b>📌 근거 카드</b><p>"+best.answer+"</p><div class='source'><b>출처:</b> "+best.source+"<br>"+
+(best.url?"<a href='"+best.url+"' target='_blank' rel='noopener'>국토교통부 어린이 공식 페이지 열기</a>":"첨부 수업자료")+
+"</div>";
+};
+update();
+</script>
+<script id="v2cfg" type="application/json">{"no":"4","title":"RAG 결합본","sub":"수업자료 연결 · 출처 표시","features":[["7장면 앱",true],["정답 잠금 · 점수",true],["근거 검색",true],["진행 표시",false],["예시 · 초기화",false],["배포",false]],"highlight":[["#evidence","4차시 신규 · 근거 검색 패널"]]}</script>
+<style id="v2css">
+.v2bar{position:sticky;top:0;z-index:9999;background:#16324a;color:#fff;
+  font-family:"Malgun Gothic","Noto Sans KR",sans-serif;padding:18px 26px 19px;
+  box-shadow:0 3px 14px #16324a3d}
+.v2row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.v2no{background:#0095DA;border-radius:11px;padding:9px 18px;font-weight:800;font-size:27px;letter-spacing:-0.5px}
+.v2ttl{font-size:33px;font-weight:800;letter-spacing:-1px}
+.v2sub{font-size:21px;color:#a8c2d6;font-weight:700}
+.v2note{margin-left:auto;font-size:16px;color:#8ba5bb;font-weight:700;
+  border:1px solid #33566f;border-radius:7px;padding:5px 11px}
+.v2feat{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.v2f{font-size:21px;font-weight:800;padding:9px 17px;border-radius:99px;letter-spacing:-0.4px}
+.v2on{background:#1d648c;color:#eaf7ff}
+.v2off{background:#22394d;color:#6b8398}
+.v2f i{font-style:normal;margin-right:7px;font-weight:900}
+.v2on i{color:#7fe0a8}
+.v2off i{color:#5a7488}
+.v2new{outline:4px solid #E08A1E !important;outline-offset:7px;border-radius:16px;position:relative !important}
+.v2tag{position:absolute;top:-22px;left:16px;background:#E08A1E;color:#fff;
+  font:800 21px "Malgun Gothic",sans-serif;padding:6px 16px;border-radius:9px;z-index:60;white-space:nowrap;
+  letter-spacing:-0.5px;box-shadow:0 2px 8px #00000026}
+</style>
+<script id="v2kit">
+(function(){
+  var c = JSON.parse(document.getElementById('v2cfg').textContent);
+  var bar = document.createElement('div');
+  bar.className = 'v2bar';
+  var feats = c.features.map(function(f){
+    return '<span class="v2f '+(f[1]?'v2on':'v2off')+'"><i>'+(f[1]?'✓':'✗')+'</i>'+f[0]+'</span>';
+  }).join('');
+  bar.innerHTML =
+    '<div class="v2row"><span class="v2no">'+c.no+'차시</span>'+
+    '<span class="v2ttl">'+c.title+'</span>'+
+    '<span class="v2sub">'+c.sub+'</span>'+
+    '<span class="v2note">연수 설명용 표시 · 원본 산출물에는 없습니다</span></div>'+
+    '<div class="v2feat">'+feats+'</div>';
+  document.body.insertBefore(bar, document.body.firstChild);
+  (c.highlight||[]).forEach(function(h){
+    var el = document.querySelector(h[0]);
+    if(!el) return;
+    el.classList.add('v2new');
+    var t = document.createElement('span');
+    t.className = 'v2tag'; t.textContent = h[1];
+    el.appendChild(t);
+  });
+})();
+</script>
+</body>
+</html>
+

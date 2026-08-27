@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>국토 대탈출 - 1차시 기획 보드</title>
+  <style>
+    :root {
+      --cream: #fff8e8;
+      --cream-dark: #f8edcf;
+      --yellow: #ffd85e;
+      --yellow-deep: #f3bd32;
+      --brown: #5c452c;
+      --brown-light: #866b4b;
+      --white: #fffdf8;
+      --green: #91b878;
+      --blue: #8fc8d8;
+      --red: #e88970;
+      --shadow: 0 10px 25px rgba(92, 69, 44, 0.10);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--brown);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,216,94,.28) 0 80px, transparent 81px),
+        radial-gradient(circle at 90% 15%, rgba(143,200,216,.18) 0 100px, transparent 101px),
+        var(--cream);
+      font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 38px 0 70px;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 42px;
+      border: 2px solid #f0d98e;
+      border-radius: 32px;
+      background: linear-gradient(135deg, #fffdf5, #fff1b9);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    header::after {
+      content: "🔎";
+      position: absolute;
+      right: 42px;
+      bottom: 18px;
+      font-size: 82px;
+      opacity: .15;
+      transform: rotate(-12deg);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: #654713;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 12px 0 8px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: 0;
+      color: var(--brown-light);
+      font-size: 18px;
+    }
+
+    .warning {
+      margin-top: 24px;
+      width: fit-content;
+      padding: 10px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      border: 1px dashed #d9b75c;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    section {
+      margin-top: 28px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      font-size: 25px;
+      letter-spacing: -1px;
+    }
+
+    .section-title span {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--yellow);
+      font-size: 19px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid #ecdcae;
+      border-radius: var(--radius);
+      background: rgba(255,253,248,.92);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 9px;
+      font-size: 19px;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .quote {
+      position: relative;
+      margin: 14px 0 0;
+      padding: 16px 20px;
+      border-radius: 18px;
+      background: #fff4bd;
+      font-weight: 700;
+    }
+
+    .quote::before {
+      content: "";
+      position: absolute;
+      left: 24px;
+      bottom: -9px;
+      width: 18px;
+      height: 18px;
+      background: #fff4bd;
+      transform: rotate(45deg);
+    }
+
+    .story {
+      display: grid;
+      gap: 15px;
+    }
+
+    .scene {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 20px;
+      align-items: stretch;
+      padding: 20px;
+      border: 1px solid #ead8a4;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 7px 18px rgba(92,69,44,.07);
+    }
+
+    .scene-number {
+      display: grid;
+      place-items: center;
+      min-height: 86px;
+      border-radius: 20px;
+      background: var(--yellow);
+      color: #644a16;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .scene h3 {
+      margin: 0 0 5px;
+      font-size: 19px;
+    }
+
+    .scene p {
+      margin: 0;
+    }
+
+    .scene .bubble {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: #fff3c8;
+      color: #72562e;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 21px;
+    }
+
+    li + li {
+      margin-top: 5px;
+    }
+
+    .misconception {
+      border-left: 6px solid var(--red);
+    }
+
+    .success {
+      border-left: 6px solid var(--green);
+    }
+
+    .next {
+      border-left: 6px solid var(--blue);
+    }
+
+    .rule {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .tag {
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: #f7efd8;
+      border: 1px solid #e8d9b4;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tag.no {
+      background: #fff0eb;
+      border-color: #f1c2b5;
+      color: #8c4e3e;
+    }
+
+    .tag.yes {
+      background: #edf7e9;
+      border-color: #c8dfba;
+      color: #527143;
+    }
+
+    footer {
+      margin-top: 32px;
+      padding: 22px;
+      border-radius: 20px;
+      background: #6b5336;
+      color: #fff8e8;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: #ffe18a;
+    }
+
+    @media (max-width: 760px) {
+      .wrap {
+        width: min(100% - 22px, 1120px);
+        padding-top: 16px;
+      }
+
+      header {
+        padding: 28px 24px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scene {
+        grid-template-columns: 58px 1fr;
+        gap: 13px;
+        padding: 15px;
+      }
+
+      .scene-number {
+        min-height: 58px;
+        border-radius: 15px;
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header>
+      <span class="badge">1차시 · 바이브코딩 이해</span>
+      <h1>국토 대탈출<br>기획 보드</h1>
+      <p class="subtitle">
+        초등학교 5학년 사회 「우리 국토의 위치」를
+        탐정 이야기로 탐색하는 수업앱의 첫 번째 설계 문서입니다.
+      </p>
+      <div class="warning">
+        📌 이번 차시는 <strong>기획만</strong> 합니다. 실제 앱·JavaScript·RAG·저장·배포는 아직 만들지 않습니다.
+      </div>
+    </header>
+
+    <section>
+      <h2 class="section-title"><span>🎯</span> 수업 문제</h2>
+      <div class="card">
+        <h3>아이들은 우리나라의 위치를 어떻게 이해할까?</h3>
+        <p>
+          초등학교 5학년 학생에게 위도와 경도는 추상적인 숫자와 낯선 용어로 느껴질 수 있다.
+          단순히 “북위 33~43도, 동경 124~132도”를 외우게 하기보다,
+          <strong>“우리나라가 지구 위 어디에 있는가?”</strong>라는 탐정 문제를 해결하는 과정에서
+          국토와 위치 개념을 연결하도록 설계한다.
+        </p>
+        <div class="quote">
+          “사라진 우리 국토의 위치를 찾아라!”
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span>👩‍🏫</span> 대상과 수업 목표</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>대상</h3>
+          <p>
+            초등학교 5학년 사회<br>
+            「우리 국토의 위치」 학습자
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>핵심 학습 목표</h3>
+          <ul>
+            <li>국토의 의미를 설명할 수 있다.</li>
+            <li>지구본과 세계지도에서 우리나라의 위치를 찾을 수 있다.</li>
+            <li>위도와 경도의 의미를 이해할 수 있다.</li>
+            <li>우리나라의 위치를 북위와 동경으로 나타낼 수 있다.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>핵심 지식</h3>
+          <p>
+            우리 국토는 <strong>한 나라의 땅이며 사람들이 살아가는 삶의 터전</strong>이다.
+            우리나라는 대략 <strong>북위 33~43도, 동경 124~132도</strong>에 위치한다.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>학습 경험</h3>
+          <p>
+            설명을 먼저 듣는 방식보다
+            <strong>사건 → 단서 → 질문 → 위치 탐색 → 좌표 미션</strong>의 순서로
+            학생이 직접 발견하는 경험을 제공한다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span>🕵️</span> 「국토 대탈출」 7장면 스토리보드</h2>
+
+      <div class="story">
+
+        <article class="scene">
+          <div class="scene-number">01</div>
+          <div>
+            <h3>긴급 사건 발생</h3>
+            <p>
+              탐정에게 긴급 메시지가 도착한다.
+              “큰일 났다! 우리 국토의 위치를 나타내는 단서가 사라졌다!”
+            </p>
+            <span class="bubble">말풍선: “범인은 어디로 국토를 데려간 걸까?”</span>
+          </div>
+        </article>
+
+        <article class="scene">
+          <div class="scene-number">02</div>
+          <div>
+            <h3>첫 번째 암호 ― 국토</h3>
+            <p>
+              첫 번째 단서는 “한 나라의 땅이며 사람들이 살아가는 삶의 터전”이라는 문장이다.
+              학생은 이 설명이 무엇을 가리키는지 추리한다.
+            </p>
+            <span class="bubble">질문: “이 암호가 가리키는 것은 무엇일까?”</span>
+          </div>
+        </article>
+
+        <article class="scene">
+          <div class="scene-number">03</div>
+          <div>
+            <h3>지구에서 흔적 찾기</h3>
+            <p>
+              국토는 지구의 어느 곳에 있을까?
+              지구본과 세계지도를 살펴보며 우리나라가 지구에서 차지하는 위치를 찾아본다.
+            </p>
+            <span class="bubble">질문: “우리나라는 세계의 어느 곳에 있을까?”</span>
+          </div>
+        </article>
+
+        <article class="scene">
+          <div class="scene-number">04</div>
+          <div>
+            <h3>두 번째 단서 ― 위도</h3>
+            <p>
+              가로로 그어진 위선과 적도를 단서로 사용한다.
+              위도가 북쪽과 남쪽의 위치를 나타낸다는 점을 이해한다.
+            </p>
+            <span class="bubble">질문: “북쪽과 남쪽 위치는 무엇으로 나타낼까?”</span>
+          </div>
+        </article>
+
+        <article class="scene">
+          <div class="scene-number">05</div>
+          <div>
+            <h3>세 번째 단서 ― 경도</h3>
+            <p>
+              세로로 그어진 경선을 살펴보고,
+              경도가 동쪽과 서쪽의 위치를 나타내는 방법임을 이해한다.
+            </p>
+            <span class="bubble">질문: “동쪽과 서쪽 위치는 무엇으로 나타낼까?”</span>
+          </div>
+        </article>
+
+        <article class="scene">
+          <div class="scene-number">06</div>
+          <div>
+            <h3>결정적 단서 ― 우리나라의 위치</h3>
+            <p>
+              탐정 수첩에 결정적인 숫자가 나타난다.
+              <strong>북위 33~43도, 동경 124~132도.</strong>
+              학생은 위도와 경도를 함께 사용해 우리나라의 위치를 좁혀 간다.
+            </p>
+            <span class="bubble">단서: “북위 33~43°, 동경 124~132°”</span>
+          </div>
+        </article>
+
+        <article class="scene">
+          <div class="scene-number">07</div>
+          <div>
+            <h3>최종 좌표 미션 ― 국토 탈출 해결!</h3>
+            <p>
+              마지막 좌표 미션을 해결한다.
+              위도와 경도를 순서대로 확인하여 우리나라가 어디에 위치하는지 찾아내고
+              사건을 해결한다.
+            </p>
+            <span class="bubble">최종 질문: “이 좌표가 가리키는 곳은 어디일까?”</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span>⚠️</span> 예상 학생 오개념</h2>
+      <div class="grid">
+        <div class="card misconception">
+          <h3>오개념 ① 위도와 경도를 반대로 생각함</h3>
+          <p>
+            위도는 북쪽·남쪽, 경도는 동쪽·서쪽이라는 관계를 혼동할 수 있다.
+          </p>
+        </div>
+
+        <div class="card misconception">
+          <h3>오개념 ② 지도에서 위·아래가 곧 위도라고 생각함</h3>
+          <p>
+            지도 화면의 위치와 지리적 위도 개념을 단순히 같은 것으로 받아들일 수 있다.
+          </p>
+        </div>
+
+        <div class="card misconception">
+          <h3>오개념 ③ 숫자가 클수록 우리나라에서 멀어진다는 식으로 단순 판단</h3>
+          <p>
+            위도·경도의 기준점과 방향을 이해하지 않은 채 숫자 크기만 비교할 수 있다.
+          </p>
+        </div>
+
+        <div class="card misconception">
+          <h3>오개념 ④ 좌표의 순서를 무시함</h3>
+          <p>
+            위도와 경도를 아무 순서로나 읽거나 하나의 숫자처럼 받아들일 수 있다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span>🏆</span> 성공 기준</h2>
+      <div class="grid">
+        <div class="card success">
+          <h3>내용 성공</h3>
+          <ul>
+            <li>국토의 의미를 자신의 말로 설명할 수 있다.</li>
+            <li>지구본과 세계지도에서 우리나라를 찾을 수 있다.</li>
+            <li>위도와 경도를 구분할 수 있다.</li>
+            <li>북위 33~43도, 동경 124~132도를 정확히 확인할 수 있다.</li>
+          </ul>
+        </div>
+
+        <div class="card success">
+          <h3>수업앱 성공</h3>
+          <ul>
+            <li>학생이 이야기의 다음 단서를 자연스럽게 찾는다.</li>
+            <li>한 화면에 하나의 핵심 질문이 보인다.</li>
+            <li>시각적으로 가장 중요한 정보가 한눈에 들어온다.</li>
+            <li>교사가 수업 중 별도의 복잡한 조작 없이 사용할 수 있다.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span>📦</span> 다음 차시에 넘길 요구사항</h2>
+      <div class="card next">
+        <h3>2차시에서 처음으로 개발환경을 만든다</h3>
+        <p>
+          다음 차시는 아직 수업앱을 만드는 시간이 아니다.
+          기획을 실제 프로젝트로 이어가기 위한 최소 개발환경과 프로젝트 관리 문서를 준비한다.
+        </p>
+
+        <div class="rule">
+          <span class="tag yes">새로 만들기: 개발환경</span>
+          <span class="tag yes">새로 만들기: PROJECT.md</span>
+          <span class="tag yes">새로 만들기: 프로젝트 규칙</span>
+          <span class="tag no">금지: 수업 화면 구현</span>
+          <span class="tag no">금지: JavaScript 상호작용</span>
+          <span class="tag no">금지: RAG</span>
+          <span class="tag no">금지: 저장·배포</span>
+        </div>
+
+        <ul>
+          <li>이번 기획 보드의 스토리와 요구사항을 다음 차시의 프로젝트 문서에 반영한다.</li>
+          <li>현재 구현된 기능이 무엇인지 기록할 수 있는 구조를 만든다.</li>
+          <li>아직 구현하지 않은 기능을 명시하여 AI가 앞서 개발하지 않도록 한다.</li>
+          <li>이후 차시에서 기능을 하나씩 추가할 수 있도록 작업 범위를 작게 유지한다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span>🧭</span> 1차시 개발 경계선</h2>
+      <div class="card">
+        <p>
+          이 문서는 <strong>수업앱이 아니라 수업앱을 만들기 위한 기획 보드</strong>이다.
+          따라서 현재 단계에서는 화면 설계와 이야기 흐름, 학습 내용과 성공 조건만 확정한다.
+        </p>
+        <div class="rule">
+          <span class="tag yes">HTML/CSS 정적 기획 보드</span>
+          <span class="tag yes">스토리보드</span>
+          <span class="tag yes">학습 목표</span>
+          <span class="tag yes">오개념</span>
+          <span class="tag no">JavaScript</span>
+          <span class="tag no">RAG</span>
+          <span class="tag no">데이터 저장</span>
+          <span class="tag no">로그인</span>
+          <span class="tag no">배포</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <strong>국토 대탈출 · 1차시</strong><br>
+      “좋은 바이브코딩은 코드를 빨리 쓰는 것보다, 무엇을 만들고 무엇을 아직 만들지 않을지 정하는 것에서 시작한다.”
+    </footer>
+
+  </main>
+<script id="v2cfg" type="application/json">{"no":"1","title":"기획 보드","sub":"프로그램 개발 흐름도 · 구현 아이디어 메모","features":[["정적 문서",true],["7장면 앱",false],["점수",false],["근거 검색",false],["진행 표시",false],["배포",false]],"highlight":[]}</script>
+<style id="v2css">
+.v2bar{position:sticky;top:0;z-index:9999;background:#16324a;color:#fff;
+  font-family:"Malgun Gothic","Noto Sans KR",sans-serif;padding:18px 26px 19px;
+  box-shadow:0 3px 14px #16324a3d}
+.v2row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.v2no{background:#0095DA;border-radius:11px;padding:9px 18px;font-weight:800;font-size:27px;letter-spacing:-0.5px}
+.v2ttl{font-size:33px;font-weight:800;letter-spacing:-1px}
+.v2sub{font-size:21px;color:#a8c2d6;font-weight:700}
+.v2note{margin-left:auto;font-size:16px;color:#8ba5bb;font-weight:700;
+  border:1px solid #33566f;border-radius:7px;padding:5px 11px}
+.v2feat{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.v2f{font-size:21px;font-weight:800;padding:9px 17px;border-radius:99px;letter-spacing:-0.4px}
+.v2on{background:#1d648c;color:#eaf7ff}
+.v2off{background:#22394d;color:#6b8398}
+.v2f i{font-style:normal;margin-right:7px;font-weight:900}
+.v2on i{color:#7fe0a8}
+.v2off i{color:#5a7488}
+.v2new{outline:4px solid #E08A1E !important;outline-offset:7px;border-radius:16px;position:relative !important}
+.v2tag{position:absolute;top:-22px;left:16px;background:#E08A1E;color:#fff;
+  font:800 21px "Malgun Gothic",sans-serif;padding:6px 16px;border-radius:9px;z-index:60;white-space:nowrap;
+  letter-spacing:-0.5px;box-shadow:0 2px 8px #00000026}
+</style>
+<script id="v2kit">
+(function(){
+  var c = JSON.parse(document.getElementById('v2cfg').textContent);
+  var bar = document.createElement('div');
+  bar.className = 'v2bar';
+  var feats = c.features.map(function(f){
+    return '<span class="v2f '+(f[1]?'v2on':'v2off')+'"><i>'+(f[1]?'✓':'✗')+'</i>'+f[0]+'</span>';
+  }).join('');
+  bar.innerHTML =
+    '<div class="v2row"><span class="v2no">'+c.no+'차시</span>'+
+    '<span class="v2ttl">'+c.title+'</span>'+
+    '<span class="v2sub">'+c.sub+'</span>'+
+    '<span class="v2note">연수 설명용 표시 · 원본 산출물에는 없습니다</span></div>'+
+    '<div class="v2feat">'+feats+'</div>';
+  document.body.insertBefore(bar, document.body.firstChild);
+  (c.highlight||[]).forEach(function(h){
+    var el = document.querySelector(h[0]);
+    if(!el) return;
+    el.classList.add('v2new');
+    var t = document.createElement('span');
+    t.className = 'v2tag'; t.textContent = h[1];
+    el.appendChild(t);
+  });
+})();
+</script>
+</body>
+</html>
+

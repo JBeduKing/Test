@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>국토 대탈출 | 7차시 공유·발표</title>
+<style>
+:root{--cream:#fff9e9;--paper:#fffdf7;--yellow:#ffd85c;--gold:#d6a500;--brown:#4b3825;--green:#356f2d;--blue:#285f70}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--brown);font-family:"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
+main{width:min(1000px,calc(100% - 28px));margin:auto;padding:25px 0 45px}
+header{background:var(--yellow);border:2px solid var(--gold);border-radius:28px;padding:35px;text-align:center;margin-bottom:18px}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.2;margin:5px 0 10px;letter-spacing:-2px}
+h2{font-size:27px;margin:0 0 15px}
+h3{margin:0 0 7px}
+.card{background:var(--paper);border:2px solid #e1cf9e;border-radius:22px;padding:25px;margin:16px 0;box-shadow:0 5px 15px #4b382515}
+.bubble{background:#fff1b0;border:2px solid #e3c548;border-radius:20px;padding:18px 22px;font-weight:800}
+.lead{font-size:20px;font-weight:800}
+.badge{display:inline-block;background:#f3e5c5;border-radius:99px;padding:5px 12px;font-size:13px;font-weight:900}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:1px solid #d8c79e;padding:10px;vertical-align:top}
+th{background:#ffe79a;text-align:left}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.step{background:#fff5ca;border:2px solid #e1c55e;border-radius:17px;padding:15px}
+.num{font-size:25px;font-weight:900;color:#9a7100}
+pre{background:#fff8dd;border:1px dashed #c7a83b;border-radius:14px;padding:14px;white-space:pre-wrap;overflow:auto}
+.term{color:var(--blue);font-weight:900}
+.note{background:#edf6e9;border-left:6px solid var(--green);padding:14px 17px;border-radius:10px}
+.warn{background:#fff0eb;border-left:6px solid #a74b3c;padding:14px 17px;border-radius:10px}
+.record{min-height:150px;border:2px dashed #bfae87;border-radius:15px;background:#fffef9;padding:15px;color:#88775c}
+ul{padding-left:22px}
+@media(max-width:700px){.steps{grid-template-columns:1fr 1fr}table{font-size:14px}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}header{padding:25px 15px}.card{padding:18px}}
+@media print{
+body{background:white;font-size:11pt}main{width:100%;padding:0}
+header,.card{box-shadow:none;break-inside:avoid}
+.card{border:1px solid #999}.steps{grid-template-columns:repeat(5,1fr)}
+a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+<span class="badge">7차시 · 공유와 발표</span>
+<h1>🕵️ 국토 대탈출</h1>
+<p class="lead">“초등 5학년 사회 ‘우리 국토의 위치’를<br>작은 HTML 수업앱으로 만드는 7차시 바이브코딩 프로젝트”</p>
+</header>
+
+<section class="card">
+<h2>① 프로젝트 한 문장 소개</h2>
+<div class="bubble">학생이 탐정이 되어 ‘국토 대탈출’ 사건을 해결하며 <b>국토 → 지구본·세계지도 → 위도 → 경도 → 우리나라 좌표</b>를 단계적으로 알아보고, 마지막에는 수업 근거 자료를 폐쇄형 검색으로 확인하는 단일 HTML 수업 자료입니다.</div>
+</section>
+
+<section class="card">
+<h2>② 1~7차시 누적 산출물</h2>
+<table>
+<thead><tr><th>차시</th><th>주제</th><th>새로 만든 산출물</th><th>구현 경계</th></tr></thead>
+<tbody>
+<tr><td>1차시</td><td>바이브코딩 이해</td><td>정적 기획 보드</td><td>수업 문제·대상·목표·7장면·오개념·성공 기준 설계</td></tr>
+<tr><td>2차시</td><td>개발환경·PROJECT.md</td><td>PROJECT.md</td><td>프로젝트 규칙·파일 구조·디자인·접근성·검증 기준 문서화</td></tr>
+<tr><td>3차시</td><td>기본 수업앱</td><td>단일 HTML 수업앱</td><td>7장면, 이전/다음, 정답 잠금, 점수, 중복 득점 방지</td></tr>
+<tr><td>4차시</td><td>RAG 추가</td><td>6개 facts 폐쇄형 검색</td><td>키워드 검색, 답+출처, 미일치 거절</td></tr>
+<tr><td>5차시</td><td>사용성 개선</td><td>검증된 사용성 개선 HTML</td><td>진행 표시, progressbar, aria-live, 키보드, 초기화, 반응형</td></tr>
+<tr><td>6차시</td><td>업로드·배포</td><td>GitHub Pages 배포본</td><td>검증된 5차시 파일을 index.html로 배포</td></tr>
+<tr><td>7차시</td><td>공유·발표</td><td>현재 발표 자료</td><td>과정·디버깅·RAG 원리·확장 방법·피드백 공유</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="card">
+<h2>③ 5분 시연 순서</h2>
+<div class="steps">
+<div class="step"><div class="num">1분</div><h3>사건 시작</h3><p>긴급 메시지 → 탐정 임명 → ‘국토’ 정답을 선택합니다.</p></div>
+<div class="step"><div class="num">2분</div><h3>좌표 단서</h3><p>지구본+세계지도 → 위도 → 경도를 빠르게 시연합니다.</p></div>
+<div class="step"><div class="num">3분</div><h3>최종 좌표</h3><p>북위 33~43도·동경 124~132도를 맞혀 50점을 확인합니다.</p></div>
+<div class="step"><div class="num">4분</div><h3>근거 확인</h3><p>국토·위도·경도·우리나라 좌표를 검색하고 답과 출처를 보여 줍니다.</p></div>
+<div class="step"><div class="num">5분</div><h3>만든 과정</h3><p>실제 디버깅 사례와 ‘작은 요청 → 실행 → 검증’ 과정을 소개합니다.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>④ 실제 디버깅 사례 3개</h2>
+
+<h3>사례 1 · 정답 후에도 다음 버튼이 disabled</h3>
+<div class="warn"><b>증상:</b> 국토를 맞혀 점수 10점과 정답 안내는 나오지만 다음 버튼이 계속 잠겼습니다.</div>
+<p><b>원인:</b> 정답 처리와 다음 버튼의 잠금 상태를 연결하는 상태값이 제대로 갱신되지 않았습니다.</p>
+<p><b>수정:</b> 정답 처리에서 해당 장면을 완료 상태로 만들고 화면 갱신 시 다음 버튼의 disabled 상태를 다시 계산했습니다.</p>
+<p><b>배운 점:</b> “정답 표시”와 “다음 단계 잠금 해제”는 별개의 상태이므로 둘 다 검증해야 합니다.</p>
+
+<h3>사례 2 · 무료 출력 한도로 facts 중간에서 HTML이 잘림</h3>
+<div class="warn"><b>증상:</b> 지구본 answer 문자열 중간에서 출력이 끝났고, 닫는 script/body/html과 기존 이동 로직까지 사라졌습니다.</div>
+<p><b>원인:</b> 한 번에 너무 많은 코드를 생성하여 무료 버전의 출력 한도를 넘었습니다.</p>
+<p><b>수정:</b> 기능을 유지하면서 CSS와 문구를 압축하고, <b>13,000자 이하의 완전한 단일 HTML</b>로 다시 작은 요청을 보냈습니다.</p>
+<p><b>배운 점:</b> 바이브코딩에서는 한 번에 최종본을 요구하기보다 차시별 범위를 지키고, 작은 수정 단위로 생성·실행·검증하는 것이 중요합니다.</p>
+
+<h3>사례 3 · 이모지와 쉼표 때문에 정답 비교 실패</h3>
+<div class="warn"><b>증상 A:</b> `🌐 지구본`, `🗺️ 세계지도`를 눌러도 정답이 아니라고 판정되었습니다.</div>
+<p><b>원인 A:</b> 버튼의 <code>textContent</code>에는 이모지가 포함되어 있어 정답 단어와 완전 일치하지 않았습니다.</p>
+<p><b>수정 A:</b> 장면 3은 버튼 텍스트에 정답 단어가 <b>포함되는지</b> 확인하도록 바꾸고, 두 정답을 모두 선택했을 때만 완료되게 했습니다.</p>
+
+<div class="warn"><b>증상 B:</b> 장면 6의 좌표 정답도 오답 처리되었습니다.</div>
+<p><b>원인 B:</b> 모든 장면에 <code>쉼표 split</code>을 공통 적용하여 <code>북위 33~43도, 동경 124~132도</code>의 쉼표까지 복수 정답 구분자로 해석했습니다.</p>
+<p><b>수정 B:</b> <b>장면 3만 복수 선택 모드</b>로 유지하고, 나머지 장면은 정규화한 전체 버튼 텍스트와 전체 정답 문자열을 비교하도록 분리했습니다.</p>
+<p><b>배운 점:</b> 데이터 형식이 다른 문제를 하나의 판정 로직으로 억지로 처리하지 않고, 예외가 필요한 장면의 규칙을 명확하게 분리합니다.</p>
+</section>
+
+<section class="card">
+<h2>⑤ RAG란 무엇인가?</h2>
+<div class="bubble">
+<b>RAG</b>는 질문에 답할 때 미리 준비한 자료에서 관련 정보를 찾아 답변에 활용하는 방식입니다.
+</div>
+<p>이번 프로젝트에서는 인터넷의 모든 정보를 자유롭게 검색하거나 외부 AI에게 질문하지 않습니다. 수업에서 정한 근거 카드 안에서만 찾아봅니다.</p>
+<div class="note">
+<b>핵심:</b> “모르는 것은 그럴듯하게 만들지 않는다.”<br>
+등록된 근거와 연결되지 않는 질문에는 정해진 거절 문구를 보여 줍니다.
+</div>
+</section>
+
+<section class="card">
+<h2>⑥ 이번 자료의 RAG는 어떻게 작동하는가?</h2>
+<p>이번 수업앱의 RAG는 <b>외부 AI 호출이 없는 폐쇄형 키워드 검색</b>입니다.</p>
+<ul>
+<li>근거 자료는 첨부 수업자료 <b>「[1차시] 우리 국토의 위치를 알아봅시다(1).pptx」</b>와 <b>국토교통부 어린이 공식 페이지</b>만 사용합니다.</li>
+<li>6개의 facts 카드에 <code>keywords</code>, <code>answer</code>, <code>source</code>, <code>url</code>을 저장합니다.</li>
+<li>학생의 질문과 각 카드의 keywords를 비교하여 가장 많이 일치하는 카드를 찾습니다.</li>
+<li>일치하는 카드가 있으면 <b>답 + 출처</b>를 보여 줍니다.</li>
+<li>키워드가 하나도 일치하지 않으면 추측하지 않고 정확히 <b>“이 수업의 근거 자료에서는 확인할 수 없습니다.”</b>라고 답합니다.</li>
+</ul>
+<p class="note"><b>6개 근거 카드:</b> 국토 정의 · 지구본 · 세계지도 · 위도 · 경도 · 우리나라 위치(북위 33~43도·동경 124~132도)</p>
+</section>
+
+<section class="card">
+<h2>⑦ 다른 단원에 적용하는 방법</h2>
+<p>전체 프로그램을 다시 만들 필요 없이, 폐쇄형 검색의 <b>facts 카드 내용</b>을 새 단원의 근거 자료에 맞게 바꾸는 방식으로 확장할 수 있습니다.</p>
+<p>핵심적으로 바꾸는 항목은 네 가지입니다.</p>
+<pre>{
+  keywords: ["새 단원 핵심어", "질문어", "동의어"],
+  answer: "근거 자료에서 확인한 정확한 답",
+  source: "자료명 또는 공식 출처",
+  url: "공식 페이지 주소"
+}</pre>
+<div class="note">
+<b>주의:</b> keywords에 없는 내용을 추측하여 answer에 넣지 않습니다. source와 url도 실제로 확인한 근거만 기록합니다. 단원의 사실이 바뀌면 먼저 원자료를 확인한 뒤 facts를 수정합니다.
+</div>
+<p>즉, <b>수업 이야기와 화면은 유지하고 → 근거 카드의 네 항목을 새 단원에 맞게 교체</b>하는 방식입니다.</p>
+</section>
+
+<section class="card">
+<h2>⑧ 동료 피드백 기록</h2>
+<p><b>동료 교사:</b> ________________________________　　<b>날짜:</b> ______________</p>
+<div class="record">
+<strong>좋았던 점</strong><br><br>
+____________________________________________________________________________<br><br>
+____________________________________________________________________________
+</div>
+<div class="record">
+<strong>학생 입장에서 개선할 점</strong><br><br>
+____________________________________________________________________________<br><br>
+____________________________________________________________________________
+</div>
+<div class="record">
+<strong>다른 단원에 적용할 아이디어</strong><br><br>
+____________________________________________________________________________<br><br>
+____________________________________________________________________________
+</div>
+</section>
+
+<section class="card">
+<h2>마무리 · 이 프로젝트에서 얻은 것</h2>
+<div class="bubble">
+“코드를 한 번에 완성하는 것”보다<br>
+<b>작게 요청하고 → 실행하고 → 오류를 확인하고 → 한 가지씩 고치는 과정</b>이 핵심입니다.
+</div>
+<p>1차시의 수업 설계가 2차시의 프로젝트 규칙이 되고, 3차시부터 실제 앱으로 자라며, 4차시 근거 검색과 5차시 사용성 개선을 거쳐 6차시 배포, 7차시 공유까지 이어졌습니다.</p>
+<p><span class="badge">국토 대탈출 탐정단 · 프로젝트 완료</span></p>
+</section>
+
+</main>
+<script id="v2cfg" type="application/json">{"no":"7","title":"공유 · 발표 자료","sub":"시연 순서 · 제작 과정 · 동료 피드백","features":[["7장면 앱",true],["정답 잠금 · 점수",true],["근거 검색",true],["진행 표시",true],["예시 · 초기화",true],["배포",true]],"highlight":[]}</script>
+<style id="v2css">
+.v2bar{position:sticky;top:0;z-index:9999;background:#16324a;color:#fff;
+  font-family:"Malgun Gothic","Noto Sans KR",sans-serif;padding:18px 26px 19px;
+  box-shadow:0 3px 14px #16324a3d}
+.v2row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.v2no{background:#0095DA;border-radius:11px;padding:9px 18px;font-weight:800;font-size:27px;letter-spacing:-0.5px}
+.v2ttl{font-size:33px;font-weight:800;letter-spacing:-1px}
+.v2sub{font-size:21px;color:#a8c2d6;font-weight:700}
+.v2note{margin-left:auto;font-size:16px;color:#8ba5bb;font-weight:700;
+  border:1px solid #33566f;border-radius:7px;padding:5px 11px}
+.v2feat{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.v2f{font-size:21px;font-weight:800;padding:9px 17px;border-radius:99px;letter-spacing:-0.4px}
+.v2on{background:#1d648c;color:#eaf7ff}
+.v2off{background:#22394d;color:#6b8398}
+.v2f i{font-style:normal;margin-right:7px;font-weight:900}
+.v2on i{color:#7fe0a8}
+.v2off i{color:#5a7488}
+.v2new{outline:4px solid #E08A1E !important;outline-offset:7px;border-radius:16px;position:relative !important}
+.v2tag{position:absolute;top:-22px;left:16px;background:#E08A1E;color:#fff;
+  font:800 21px "Malgun Gothic",sans-serif;padding:6px 16px;border-radius:9px;z-index:60;white-space:nowrap;
+  letter-spacing:-0.5px;box-shadow:0 2px 8px #00000026}
+</style>
+<script id="v2kit">
+(function(){
+  var c = JSON.parse(document.getElementById('v2cfg').textContent);
+  var bar = document.createElement('div');
+  bar.className = 'v2bar';
+  var feats = c.features.map(function(f){
+    return '<span class="v2f '+(f[1]?'v2on':'v2off')+'"><i>'+(f[1]?'✓':'✗')+'</i>'+f[0]+'</span>';
+  }).join('');
+  bar.innerHTML =
+    '<div class="v2row"><span class="v2no">'+c.no+'차시</span>'+
+    '<span class="v2ttl">'+c.title+'</span>'+
+    '<span class="v2sub">'+c.sub+'</span>'+
+    '<span class="v2note">연수 설명용 표시 · 원본 산출물에는 없습니다</span></div>'+
+    '<div class="v2feat">'+feats+'</div>';
+  document.body.insertBefore(bar, document.body.firstChild);
+  (c.highlight||[]).forEach(function(h){
+    var el = document.querySelector(h[0]);
+    if(!el) return;
+    el.classList.add('v2new');
+    var t = document.createElement('span');
+    t.className = 'v2tag'; t.textContent = h[1];
+    el.appendChild(t);
+  });
+})();
+</script>
+</body>
+</html>
+
